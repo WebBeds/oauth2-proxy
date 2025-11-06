@@ -1,12 +1,8 @@
 name: CodeQL Advanced
 on:
   workflow_dispatch:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   schedule:
-    - cron: '15 7 * * 0'
+    - cron: '45 16 * * 0'
 jobs:
 
   golang:
@@ -18,3 +14,6 @@ jobs:
       contents: read
     secrets:
       GIT_TOKEN: ${{ secrets.WEBBEDS_GIT_TOKEN }}
+    with:
+      govulncheck: true
+
