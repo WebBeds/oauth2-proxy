@@ -3,15 +3,20 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '45 16 * * 0'
+  pull_request:
+    branches:
+      - main
+      - master
 jobs:
 
   golang:
-    uses: WebBeds/webbeds-reusable-workflows/.github/workflows/scan_go.yml@main
+    uses: WebBeds/webbeds-reusable-workflows/.github/workflows/scan_go.yml@v2
     permissions:
       security-events: write
       packages: read
       actions: read
       contents: read
+      pull-requests: read
     secrets:
       GIT_TOKEN: ${{ secrets.WEBBEDS_GIT_TOKEN }}
     with:
